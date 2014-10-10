@@ -1,4 +1,5 @@
 package com.servlet;
+
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -8,12 +9,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.entity.User;
 
-public class OtherServlet extends HttpServlet
+public class WelcomeServlet extends HttpServlet
 {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
-		
+			throws ServletException, IOException 
+	{
 		User user = (User) req.getSession().getAttribute("user");
 		
 		if(user != null)
@@ -21,6 +22,6 @@ public class OtherServlet extends HttpServlet
 			req.setAttribute("name", user.getNom());
 		}
 		
-		req.getRequestDispatcher("WEB-INF/other.jsp").forward(req, resp);
+		req.getRequestDispatcher("WEB-INF/welcome.jsp").forward(req, resp);
 	}
 }

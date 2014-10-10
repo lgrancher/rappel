@@ -18,7 +18,7 @@
 <jsp:include page="../include/header.jsp" />
 
 <div>
-	<h1>Others !</h1>
+	<h1>Bienvenue ${name} !</h1>
 </div>
 
 <jsp:include page="../include/footer.jsp" />
