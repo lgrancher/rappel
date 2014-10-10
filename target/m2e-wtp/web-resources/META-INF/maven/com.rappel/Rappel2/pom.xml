@@ -24,6 +24,8 @@
 		<jsp-api>2.0</jsp-api>
 		<servlet>3.1.0</servlet>
 		<mysql>5.1.17</mysql>
+		<bonecp>0.8.0.RELEASE</bonecp>
+		<slf4j>1.7.7</slf4j>
 	</properties>
 
 	<dependencies>
@@ -47,7 +49,19 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>${mysql}</version>
 		</dependency>
-		
+
+		<dependency>
+			<groupId>com.jolbox</groupId>
+			<artifactId>bonecp</artifactId>
+			<version>${bonecp}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${slf4j}</version>
+		</dependency>
+
 	</dependencies>
 
 </project>

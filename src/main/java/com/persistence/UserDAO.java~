@@ -25,7 +25,7 @@ public class UserDAO
 	
 	public User retrieve(String name)
 	{
-		Connection connection = null;
+		Connection connection;
 		PreparedStatement st = null;
 		ResultSet rs = null;
 		User user = null;
@@ -56,11 +56,6 @@ public class UserDAO
 			{
 				rs.close();
 				st.close();
-
-				if(connection != null)
-				{
-					ConnectionJDBC.close(connection);
-				}
 			}
 			catch (SQLException e)
 			{

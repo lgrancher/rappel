@@ -1,8 +1,10 @@
 package com.persistence;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
+
+import com.jolbox.bonecp.BoneCP;
+import com.jolbox.bonecp.BoneCPConfig;
 
 public class ConnectionJDBC 
 {
@@ -10,39 +12,37 @@ public class ConnectionJDBC
 	private static String url = "jdbc:mysql://localhost:3306/rappel";
 	private static String user = "root";
 	private static String passwd = "root";
+	private static BoneCP connectionPool = null;
 
 	private ConnectionJDBC()
 	{
 		try 
 		{
 			Class.forName("com.mysql.jdbc.Driver");
+			BoneCPConfig config = new BoneCPConfig();
+			config.setJdbcUrl(url);
+			config.setUsername(user);
+			config.setPassword(passwd);
+			config.setMinConnectionsPerPartition(5);
+			config.setMaxConnectionsPerPartition(10);
+			config.setPartitionCount(1);
+			connectionPool = new BoneCP(config);
 		} 
 		
-		catch (ClassNotFoundException e) 
+		catch (ClassNotFoundException | SQLException e) 
 		{
 			e.printStackTrace();
 		}
 	}
 
-	public static Connection getInstance()
+	public static Connection getInstance() throws SQLException
 	{
-		
 		if(connectionJDBC==null)
 		{
 			connectionJDBC = new ConnectionJDBC();
 		}
 		
-		Connection connect=null;
-	
-		try
-		{
-			connect = DriverManager.getConnection(url, user, passwd);
-		} 
-		
-		catch (SQLException e) 
-		{
-			e.printStackTrace();
-		}
+		Connection connect = connectionPool.getConnection();
 	
 		return connect;	
 	}

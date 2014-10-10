@@ -1,6 +1,5 @@
 package com.servlet;
 import java.io.IOException;
-import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -25,17 +24,7 @@ public class NameServlet extends HttpServlet
 		System.out.println("nom = " + nom);
 		
 		UserDAO userDAO = UserDAO.getInstance();
-		User user = null;
-		
-		try 
-		{
-			user = userDAO.retrieve(nom);
-		} 
-		
-		catch (SQLException e) 
-		{
-			e.printStackTrace();
-		}
+		User user = userDAO.retrieve(nom);
 		
 		if(user != null)
 		{
