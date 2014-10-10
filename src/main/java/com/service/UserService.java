@@ -3,29 +3,18 @@ package com.service;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.entity.User;
 import com.persistence.ConnectionJDBC;
 import com.persistence.UserDAO;
 
+@Service
 public class UserService 
 {
-	private static UserService userService;
-	private static UserDAO userDAO;
-	
-	private UserService()
-	{
-		userDAO = UserDAO.getInstance();
-	}
-	
-	public static UserService getInstance()
-	{
-		if(userService == null)
-		{
-			userService = new UserService();
-		}
-		
-		return userService;	
-	}
+	@Autowired
+	private UserDAO userDAO;
 	
 	public User retrieve(String name)
 	{
@@ -54,5 +43,15 @@ public class UserService
 		}
 		
 		return user;
+	}
+
+	public UserDAO getUserDAO() 
+	{
+		return userDAO;
+	}
+
+	public void setUserDAO(UserDAO userDAO) 
+	{
+		this.userDAO = userDAO;
 	}
 }

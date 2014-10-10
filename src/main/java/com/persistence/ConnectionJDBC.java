@@ -3,9 +3,12 @@ package com.persistence;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import org.springframework.stereotype.Repository;
+
 import com.jolbox.bonecp.BoneCP;
 import com.jolbox.bonecp.BoneCPConfig;
 
+@Repository
 public class ConnectionJDBC 
 {
 	private static ConnectionJDBC connectionJDBC;

@@ -5,24 +5,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.springframework.stereotype.Repository;
+
 import com.entity.User;
 
+@Repository
 public class UserDAO 
-{
-	private static UserDAO userDAO;
-	
-	private UserDAO(){}
-	
-	public static UserDAO getInstance()
-	{
-		if(userDAO == null)
-		{
-			userDAO = new UserDAO();
-		}
-		
-		return userDAO;
-	}
-	
+{		
 	public User retrieve(String name)
 	{
 		Connection connection = null;
@@ -70,5 +59,5 @@ public class UserDAO
 		}
 		
 		return user;
-	}
+	}	
 }
