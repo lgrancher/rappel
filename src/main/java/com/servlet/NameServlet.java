@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.entity.User;
-import com.persistence.UserDAO;
+import com.service.UserService;
 
 public class NameServlet extends HttpServlet
 {
@@ -23,8 +23,8 @@ public class NameServlet extends HttpServlet
 		String nom = req.getParameter("nom"); 
 		System.out.println("nom = " + nom);
 		
-		UserDAO userDAO = UserDAO.getInstance();
-		User user = userDAO.retrieve(nom);
+		UserService userService = UserService.getInstance();
+		User user = userService.retrieve(nom);
 		
 		if(user != null)
 		{

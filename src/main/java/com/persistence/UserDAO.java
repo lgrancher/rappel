@@ -62,6 +62,7 @@ public class UserDAO
 					ConnectionJDBC.close(connection);
 				}
 			}
+
 			catch (SQLException e)
 			{
 				e.printStackTrace();
