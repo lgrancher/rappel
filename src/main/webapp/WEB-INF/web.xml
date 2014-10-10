@@ -14,4 +14,14 @@
         <servlet-name>Name</servlet-name>
         <url-pattern>/index</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+	<servlet-name>Other</servlet-name>
+	<servlet-class>com.servlet.OtherServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+        <servlet-name>Other</servlet-name>
+        <url-pattern>/other</url-pattern>
+  </servlet-mapping>
 </web-app>
