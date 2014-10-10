@@ -14,6 +14,6 @@ public class NameServlet extends HttpServlet
 		String nom = request.getParameter("nom"); 
 		System.out.println("nom = " + nom);
 		request.setAttribute("nom", nom);
-		request.getRequestDispatcher("name.jsp").forward(request, response);
+		request.getRequestDispatcher("WEB-INF/name.jsp").forward(request, response);
 	}
 }
