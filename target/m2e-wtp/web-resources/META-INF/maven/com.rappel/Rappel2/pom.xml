@@ -23,6 +23,7 @@
 	<properties>
 		<jsp-api>2.0</jsp-api>
 		<servlet>3.1.0</servlet>
+		<mysql>5.1.17</mysql>
 	</properties>
 
 	<dependencies>
@@ -40,6 +41,13 @@
 			<version>${jsp-api}</version>
 			<scope>provided</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>${mysql}</version>
+		</dependency>
+		
 	</dependencies>
 
 </project>

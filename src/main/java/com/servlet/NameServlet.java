@@ -1,5 +1,6 @@
 package com.servlet;
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -7,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.entity.User;
+import com.persistence.UserDAO;
 
 public class NameServlet extends HttpServlet
 {
@@ -22,9 +24,22 @@ public class NameServlet extends HttpServlet
 		String nom = req.getParameter("nom"); 
 		System.out.println("nom = " + nom);
 		
-		if(nom != null && (nom.equals("laura") || nom.equals("Laura")))
+		UserDAO userDAO = UserDAO.getInstance();
+		User user = null;
+		
+		try 
 		{
-			req.getSession().setAttribute("user", new User(nom));
+			user = userDAO.retrieve(nom);
+		} 
+		
+		catch (SQLException e) 
+		{
+			e.printStackTrace();
+		}
+		
+		if(user != null)
+		{
+			req.getSession().setAttribute("user", user);
 			resp.sendRedirect("welcome");
 		}
 		
