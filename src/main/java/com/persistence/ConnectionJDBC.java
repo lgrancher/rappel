@@ -13,6 +13,7 @@ public class ConnectionJDBC
 	private static String user = "root";
 	private static String passwd = "root";
 	private static BoneCP connectionPool = null;
+	private static ThreadLocal<Connection> threadConnect;
 
 	private ConnectionJDBC()
 	{
@@ -27,6 +28,7 @@ public class ConnectionJDBC
 			config.setMaxConnectionsPerPartition(10);
 			config.setPartitionCount(1);
 			connectionPool = new BoneCP(config);
+			threadConnect = new ThreadLocal<Connection>();
 		} 
 		
 		catch (ClassNotFoundException | SQLException e) 
@@ -43,8 +45,9 @@ public class ConnectionJDBC
 		}
 		
 		Connection connect = connectionPool.getConnection();
+		threadConnect.set(connect);
 	
-		return connect;	
+		return threadConnect.get();	
 	}
 	
 	public static void close(Connection connection)
@@ -57,6 +60,11 @@ public class ConnectionJDBC
 		catch (SQLException e) 
 		{
 			e.printStackTrace();
+		}
+		
+		finally
+		{
+			threadConnect.remove();
 		}
 	}
 }
