@@ -56,13 +56,13 @@ public class UserDAO
 			{
 				rs.close();
 				st.close();
-
+				
 				if(connection != null)
 				{
 					ConnectionJDBC.close(connection);
 				}
 			}
-
+			
 			catch (SQLException e)
 			{
 				e.printStackTrace();

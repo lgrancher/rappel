@@ -45,6 +45,7 @@ public class ConnectionJDBC
 		}
 		
 		Connection connect = connectionPool.getConnection();
+		connect.setAutoCommit(false);
 		threadConnect.set(connect);
 	
 		return threadConnect.get();	
