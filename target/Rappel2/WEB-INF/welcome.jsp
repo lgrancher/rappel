@@ -1,24 +1,18 @@
 <%@ page import="com.entity.*" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<%
-	User user = (User) request.getSession().getAttribute("user");
+<c:choose>
 
-	if(user == null)
-	{
-		System.out.println("Pas de session");
-		response.sendRedirect("index");
-	}
+	<c:when test="${user!=null}">
+		<jsp:include page="../include/header.jsp" />
+		<div>
+			<h1>Bienvenue ${user.nom} !</h1>
+		</div>
+		<jsp:include page="../include/footer.jsp" />
+	</c:when>
 	
-	else
-	{
-		System.out.println("Session retrouvée");
-	}
-%>
-
-<jsp:include page="../include/header.jsp" />
-
-<div>
-	<h1>Bienvenue ${name} !</h1>
-</div>
-
-<jsp:include page="../include/footer.jsp" />
+	<c:otherwise>
+		<c:redirect url="index"/>
+	</c:otherwise>
+	
+</c:choose>

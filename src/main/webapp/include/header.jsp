@@ -15,10 +15,10 @@
 <title>Starter Template for Bootstrap</title>
 
 <!-- Bootstrap core CSS -->
-<link href="assets/css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap.css" rel="stylesheet">
 
 <!-- Custom styles for this template -->
-<link href="assets/css/starter-template.css" rel="stylesheet">
+<link href="css/starter-template.css" rel="stylesheet">
 
 </head>
 
@@ -36,7 +36,7 @@
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown">${name} <span class="caret"></span></a>
+						data-toggle="dropdown">${user.nom} <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
 							<li><a href="deconnect">Deconnect</a></li>
 						</ul>

@@ -1,47 +1,51 @@
 package com.servlet;
-import java.io.IOException;
-
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.context.support.SpringBeanAutowiringSupport;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.entity.User;
 import com.service.UserService;
 
-public class NameServlet extends HttpServlet
+@Controller
+@SessionAttributes("user")
+public class NameServlet
 {
 	@Autowired
 	private UserService userService;
 	
-	public void doGet( HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
+	@RequestMapping("/")
+	public String index()
 	{
-		req.getRequestDispatcher("WEB-INF/name.jsp").forward(req, resp);	
+		return "redirect: index";
 	}
 	
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
-
-		String nom = req.getParameter("nom"); 
-		System.out.println("nom = " + nom);
+	@RequestMapping(value="/index", method = RequestMethod.GET)
+	public String redirectName()
+	{
+		return "name";	
+	}
+	
+	@RequestMapping(value="/name", method = RequestMethod.POST)
+	protected ModelAndView connectUser(@RequestParam(value="nom") String nom, ModelMap model){
 		
 		User user = userService.retrieve(nom);
 		
 		if(user != null)
 		{
-			req.getSession().setAttribute("user", user);
-			resp.sendRedirect("welcome");
+			model.addAttribute("user", user);
+			return new ModelAndView("welcome",model); 
 		}
 		
 		else
 		{
-			req.setAttribute("message", "mauvais nom !");
-			resp.sendRedirect("index");
+			model.addAttribute("message", "mauvais nom !");
+			return new ModelAndView("name", model); 
 		}
 	}
 
@@ -53,12 +57,5 @@ public class NameServlet extends HttpServlet
 	public void setUserService(UserService userService)
 	{
 		this.userService = userService;
-	}
-	
-	@Override
-	public void init(ServletConfig config) throws ServletException
-	{
-		super.init(config);
-		SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this, getServletContext());
 	}
 }

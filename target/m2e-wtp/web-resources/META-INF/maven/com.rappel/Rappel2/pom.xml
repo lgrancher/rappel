@@ -26,6 +26,8 @@
 		<mysql>5.1.17</mysql>
 		<bonecp>0.8.0.RELEASE</bonecp>
 		<slf4j>1.7.7</slf4j>
+		<spring>4.0.2.RELEASE</spring>
+		<jstl>1.2</jstl>
 	</properties>
 
 	<dependencies>
@@ -62,22 +64,37 @@
 			<version>${slf4j}</version>
 		</dependency>
 
-		<!--            Spring            -->
+		<!--                  Spring              -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
-			<version>4.0.2.RELEASE</version>
+			<version>${spring}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-beans</artifactId>
-			<version>4.0.2.RELEASE</version>
+			<version>${spring}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
-			<version>4.0.2.RELEASE</version>
+			<version>${spring}</version>
 		</dependency>
+
+		<!--                Spring  MVC            -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring}</version>
+		</dependency>
+		
+		<!--                JSTL            -->
+		
+		<dependency>
+			<groupId>jstl</groupId>
+			<artifactId>jstl</artifactId>
+		<version>${jstl}</version>
+</dependency>
 
 	</dependencies>
 

@@ -11,7 +11,6 @@
   
   <context:component-scan base-package="com.persistence" />
   <context:component-scan base-package="com.service" />   
-  <context:component-scan base-package="com.servlet" /> 
 
 </beans>
     

@@ -27,7 +27,6 @@
 		<bonecp>0.8.0.RELEASE</bonecp>
 		<slf4j>1.7.7</slf4j>
 		<spring>4.0.2.RELEASE</spring>
-		<jstl>1.2</jstl>
 	</properties>
 
 	<dependencies>
@@ -87,14 +86,6 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>${spring}</version>
 		</dependency>
-		
-		<!--                JSTL            -->
-		
-		<dependency>
-			<groupId>jstl</groupId>
-			<artifactId>jstl</artifactId>
-		<version>${jstl}</version>
-</dependency>
 
 	</dependencies>
 

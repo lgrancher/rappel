@@ -10,50 +10,22 @@
 
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/applicationContext.xml</param-value>
+		<param-value>/WEB-INF/dispatcher-servlet.xml, /WEB-INF/applicationContext.xml</param-value>
 	</context-param>
+
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 
 	<servlet>
-		<servlet-name>Name</servlet-name>
-		<servlet-class>com.servlet.NameServlet</servlet-class>
+		<servlet-name>dispatcher</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
 	</servlet>
-
 	<servlet-mapping>
-		<servlet-name>Name</servlet-name>
-		<url-pattern>/index</url-pattern>
+		<servlet-name>dispatcher</servlet-name>
+		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 
-	<servlet>
-		<servlet-name>Other</servlet-name>
-		<servlet-class>com.servlet.OtherServlet</servlet-class>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>Other</servlet-name>
-		<url-pattern>/other</url-pattern>
-	</servlet-mapping>
-
-	<servlet>
-		<servlet-name>Welcome</servlet-name>
-		<servlet-class>com.servlet.WelcomeServlet</servlet-class>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>Welcome</servlet-name>
-		<url-pattern>/welcome</url-pattern>
-	</servlet-mapping>
-
-	<servlet>
-		<servlet-name>Deconnect</servlet-name>
-		<servlet-class>com.servlet.DeconnectServlet</servlet-class>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>Deconnect</servlet-name>
-		<url-pattern>/deconnect</url-pattern>
-	</servlet-mapping>
 </web-app>
 

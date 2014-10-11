@@ -1,21 +1,21 @@
 package com.servlet;
 
-import java.io.IOException;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.context.request.WebRequest;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import com.entity.User;
-
-public class DeconnectServlet extends HttpServlet
+@Controller
+@RequestMapping("/deconnect")
+public class DeconnectServlet
 {
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
+	@RequestMapping(method = RequestMethod.GET)
+	protected String deconnect(WebRequest request, SessionStatus status){
+	
+		status.setComplete();
+	    request.removeAttribute("user", WebRequest.SCOPE_SESSION);	
 		
-		req.getSession().setAttribute("user", null);		
-		req.getRequestDispatcher("WEB-INF/name.jsp").forward(req, resp);
+		return "name";
 	}
 }

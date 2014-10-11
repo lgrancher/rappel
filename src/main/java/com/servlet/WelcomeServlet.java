@@ -3,25 +3,18 @@ package com.servlet;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.entity.User;
-
-public class WelcomeServlet extends HttpServlet
+@Controller
+@RequestMapping("/welcome")
+public class WelcomeServlet
 {
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+	@RequestMapping(method = RequestMethod.GET)
+	protected String welcome()
 			throws ServletException, IOException 
-	{
-		User user = (User) req.getSession().getAttribute("user");
-		
-		if(user != null)
-		{
-			req.setAttribute("name", user.getNom());
-		}
-		
-		req.getRequestDispatcher("WEB-INF/welcome.jsp").forward(req, resp);
+	{		
+		return "welcome";
 	}
 }
