@@ -23,10 +23,8 @@ public class UserService
 		
 		try
 		{
-			connection = ConnectionJDBC.getInstance();
+			connection = ConnectionJDBC.INSTANCE.getConnection();
 			user = userDAO.retrieve(name);
-			// [...] serie d'operations sur la base
-			connection.commit();
 		} 
 		
 		catch (SQLException e) 
@@ -38,11 +36,48 @@ public class UserService
 		{
 			if(connection != null)
 			{
-				ConnectionJDBC.close(connection);
+				ConnectionJDBC.INSTANCE.close(connection);
 			}
 		}
 		
 		return user;
+	}
+	
+	public void create(User user)
+	{
+		Connection connection = null;
+		System.out.println(user);
+
+		try
+		{
+			connection = ConnectionJDBC.INSTANCE.getConnection();
+			userDAO.create(user);
+			// [...] serie d'operations sur la base
+			connection.commit();
+		} 
+		
+		catch (SQLException e) 
+		{
+			try 
+			{
+				connection.rollback();
+			} 
+			
+			catch (SQLException e1) 
+			{
+				e1.printStackTrace();
+			}
+			
+			e.printStackTrace();
+		}
+		
+		finally
+		{
+			if(connection != null)
+			{
+				ConnectionJDBC.INSTANCE.close(connection);
+			}
+		}		
 	}
 
 	public UserDAO getUserDAO() 

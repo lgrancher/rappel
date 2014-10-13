@@ -1,13 +1,17 @@
 package com.entity;
 
 import org.springframework.context.annotation.Scope;
+import javax.persistence.Entity;
 
 @Scope("session")
+@Entity
 public class User 
 {
 	private long id;
 	private String nom;
 
+	public User(){}
+	
 	public User(long id, String nom) 
 	{		
 		this.id = id;

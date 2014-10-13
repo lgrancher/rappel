@@ -28,6 +28,8 @@
 		<slf4j>1.7.7</slf4j>
 		<spring>4.0.2.RELEASE</spring>
 		<jstl>1.2</jstl>
+		<validation>1.1.0.Final</validation>
+		<persistence>1.0.2</persistence>
 	</properties>
 
 	<dependencies>
@@ -93,8 +95,24 @@
 		<dependency>
 			<groupId>jstl</groupId>
 			<artifactId>jstl</artifactId>
-		<version>${jstl}</version>
-</dependency>
+			<version>${jstl}</version>
+		</dependency>
+		
+		<!-- gere la validation -->
+		
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>${validation}</version>
+			<scope>compile</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>javax.persistence</groupId>
+			<artifactId>persistence-api</artifactId>
+			<version>${persistence}</version>
+			<scope>provided</scope>
+		</dependency>
 
 	</dependencies>
 

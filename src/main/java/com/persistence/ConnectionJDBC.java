@@ -8,17 +8,17 @@ import org.springframework.stereotype.Repository;
 import com.jolbox.bonecp.BoneCP;
 import com.jolbox.bonecp.BoneCPConfig;
 
-@Repository
-public class ConnectionJDBC 
+public enum ConnectionJDBC
 {
-	private static ConnectionJDBC connectionJDBC;
-	private static String url = "jdbc:mysql://localhost:3306/rappel";
-	private static String user = "root";
-	private static String passwd = "root";
-	private static BoneCP connectionPool = null;
-	private static ThreadLocal<Connection> threadConnect;
+	INSTANCE;
+	private ConnectionJDBC connectionJDBC;
+	private String url = "jdbc:mysql://localhost:3306/rappel";
+	private String user = "root";
+	private String passwd = "root";
+	private BoneCP connectionPool = null;
+	private ThreadLocal<Connection> threadConnect;
 
-	private ConnectionJDBC()
+	ConnectionJDBC()
 	{
 		try 
 		{
@@ -40,21 +40,19 @@ public class ConnectionJDBC
 		}
 	}
 
-	public static Connection getInstance() throws SQLException
-	{
-		if(connectionJDBC==null)
+	public Connection getConnection() throws SQLException
+	{	
+		if(threadConnect.get() == null)
 		{
-			connectionJDBC = new ConnectionJDBC();
+			Connection connection = connectionPool.getConnection();
+			connection.setAutoCommit(false);
+			threadConnect.set(connection);	
 		}
 		
-		Connection connect = connectionPool.getConnection();
-		connect.setAutoCommit(false);
-		threadConnect.set(connect);
-	
-		return threadConnect.get();	
+		return threadConnect.get();
 	}
 	
-	public static void close(Connection connection)
+	public void close(Connection connection)
 	{
 		try 
 		{

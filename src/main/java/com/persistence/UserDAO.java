@@ -21,7 +21,7 @@ public class UserDAO
 		
 		try 
 		{
-			connection = ConnectionJDBC.getInstance();
+			connection = ConnectionJDBC.INSTANCE.getConnection();
 			String sql = "select id, name from rappel1 where name like ?;";
 			st = connection.prepareStatement(sql);
 			st.setString(1, name);
@@ -45,11 +45,6 @@ public class UserDAO
 			{
 				rs.close();
 				st.close();
-				
-				if(connection != null)
-				{
-					ConnectionJDBC.close(connection);
-				}
 			}
 			
 			catch (SQLException e)
@@ -60,4 +55,40 @@ public class UserDAO
 		
 		return user;
 	}	
+	
+	public void create(User user)
+	{
+		Connection connection = null;
+		PreparedStatement st = null;
+		
+		try 
+		{
+			connection = ConnectionJDBC.INSTANCE.getConnection();
+			String sql = "insert into rappel1 values(default,?)";
+			st = connection.prepareStatement(sql);
+			System.out.println(user.getNom());
+			st.setString(1, user.getNom());
+			
+			st.executeUpdate();
+		} 
+		
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+		
+		finally
+		{
+			try
+			{
+				st.close();
+				
+			}
+			
+			catch (SQLException e)
+			{
+				e.printStackTrace();
+			}	
+		}
+	}
 }

@@ -3,9 +3,9 @@ package com.servlet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -32,9 +32,9 @@ public class NameServlet
 	}
 	
 	@RequestMapping(value="/name", method = RequestMethod.POST)
-	protected ModelAndView connectUser(@RequestParam(value="nom") String nom, ModelMap model){
+	protected ModelAndView connectUser(@ModelAttribute("userModel") User userModel, ModelMap model){
 		
-		User user = userService.retrieve(nom);
+		User user = userService.retrieve(userModel.getNom());
 		
 		if(user != null)
 		{
