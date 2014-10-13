@@ -6,7 +6,7 @@
 	<c:when test="${user!=null}">
 		<jsp:include page="../include/header.jsp" />
 		<div>
-			<h1>Bienvenue ${user.nom} !</h1>
+			<h1>Bienvenue ${user.name} !</h1>
 		</div>
 		<jsp:include page="../include/footer.jsp" />
 	</c:when>

@@ -1,21 +1,33 @@
 package com.entity;
 
 import org.springframework.context.annotation.Scope;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Scope("session")
 @Entity
+@Table(name="rappel1")
 public class User 
 {
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="id")
 	private long id;
-	private String nom;
+	@Column(name="name")
+	private String name;
 
 	public User(){}
 	
-	public User(long id, String nom) 
+	public User(long id, String name) 
 	{		
 		this.id = id;
-		this.nom = nom;
+		this.name = name;
 	}
 
 	public long getId() {
@@ -26,14 +38,14 @@ public class User
 		this.id = id;
 	}
 
-	public String getNom() 
+	public String getName() 
 	{
-		return nom;
+		return name;
 	}
 
-	public void setNom(String nom) 
+	public void setName(String name) 
 	{
-		this.nom = nom;
+		this.name = name;
 	}
 
 	@Override
@@ -42,7 +54,7 @@ public class User
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + (int) (id ^ (id >>> 32));
-		result = prime * result + ((nom == null) ? 0 : nom.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
 
@@ -58,10 +70,10 @@ public class User
 		User other = (User) obj;
 		if (id != other.id)
 			return false;
-		if (nom == null) {
-			if (other.nom != null)
+		if (name == null) {
+			if (other.name != null)
 				return false;
-		} else if (!nom.equals(other.nom))
+		} else if (!name.equals(other.name))
 			return false;
 		return true;
 	}
@@ -69,6 +81,6 @@ public class User
 	@Override
 	public String toString() 
 	{
-		return "User [id=" + id + ", nom=" + nom + "]";
+		return "User [id=" + id + ", name=" + name + "]";
 	}	
 }

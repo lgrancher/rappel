@@ -1,5 +1,7 @@
 package com.servlet;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -34,7 +36,7 @@ public class NameServlet
 	@RequestMapping(value="/name", method = RequestMethod.POST)
 	protected ModelAndView connectUser(@ModelAttribute("userModel") User userModel, ModelMap model){
 		
-		User user = userService.retrieve(userModel.getNom());
+		User user = userService.retrieve(userModel.getName());
 		
 		if(user != null)
 		{

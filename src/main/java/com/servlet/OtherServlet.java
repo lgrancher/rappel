@@ -20,7 +20,7 @@ public class OtherServlet
 		
 		if(user != null)
 		{
-			user.setNom(user.getNom().toUpperCase());
+			user.setName(user.getName().toUpperCase());
 		}
 		
 		return "other";

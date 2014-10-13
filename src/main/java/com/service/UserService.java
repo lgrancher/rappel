@@ -24,7 +24,7 @@ public class UserService
 		try
 		{
 			connection = ConnectionJDBC.INSTANCE.getConnection();
-			user = userDAO.retrieve(name);
+			user = userDAO.findByName(name);
 		} 
 		
 		catch (SQLException e) 
@@ -51,7 +51,7 @@ public class UserService
 		try
 		{
 			connection = ConnectionJDBC.INSTANCE.getConnection();
-			userDAO.create(user);
+			userDAO.save(user);
 			// [...] serie d'operations sur la base
 			connection.commit();
 		} 

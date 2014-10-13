@@ -4,7 +4,7 @@
 	
 	    Se connecter
 		<form action="name" method="POST">
-			<input type="text" placeholder="nom" name="nom"> <input type="submit"
+			<input type="text" placeholder="nom" name="name"> <input type="submit"
 				value="ok">
 		</form>
 
@@ -15,7 +15,7 @@
 	
 	    S'inscrire
 		<form action="register" method="POST">
-			<input type="text" placeholder="nom" name="nom"> <input type="submit"
+			<input type="text" placeholder="nom" name="name"> <input type="submit"
 				value="ok">
 		</form>
 		${messageError}

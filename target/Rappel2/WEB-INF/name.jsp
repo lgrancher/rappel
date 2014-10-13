@@ -18,7 +18,7 @@
 			<input type="text" placeholder="nom" name="nom"> <input type="submit"
 				value="ok">
 		</form>
-
+		${messageError}
 	</div>
 	
 	
